@@ -1,3 +1,4 @@
 sqlalchemy
 alembic
 fastapi[all]
+psycopg2

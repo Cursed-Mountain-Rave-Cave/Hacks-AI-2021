@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  anl-portgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    restart: always
+    environment:
+      POSTGRES_DB: anl
+      POSTGRES_USER: anl
+      POSTGRES_PASSWORD: example
+    volumes:
+      - /opt/anl/postgresql:/var/lib/postgresql/data
