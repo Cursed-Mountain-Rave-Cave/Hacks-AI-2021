@@ -5,5 +5,20 @@ services:
     build: .
     image: analytics-backend
     restart: always
+    environment:
+      RELOAD: 'False'
+      POSTGRES_DSN: postgresql://anl:example@analytics-portgres:5432/anl
     ports:
-      - 4100:4100
+      - 4100:4000
+
+  analytics-portgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    restart: always
+    environment:
+      POSTGRES_DB: anl
+      POSTGRES_USER: anl
+      POSTGRES_PASSWORD: example
+    volumes:
+      - /opt/anl/postgresql:/var/lib/postgresql/data
