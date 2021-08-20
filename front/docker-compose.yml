@@ -1,0 +1,7 @@
+version: '3'
+services:
+  hacks-ai-ui:
+    build: .
+    image: hacks-ai-ui
+    ports:
+      - '80:80'
