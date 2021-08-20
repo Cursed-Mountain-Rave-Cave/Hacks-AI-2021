@@ -1,24 +1,85 @@
 <template>
   <v-container fluid>
-    <h2>Актуальные проблемы</h2>
-    <v-card class="pa-2" rounded="lg">
-      <v-simple-table>
-        <template v-slot:default>
-          <thead>
-            <tr>
-              <th class="text-left"> Name </th>
-              <th class="text-left"> Calories </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in desserts" :key="item.name">
-              <td>{{ item.name }}</td>
-              <td>{{ item.calories }}</td>
-            </tr>
-          </tbody>
-        </template>
-      </v-simple-table>
-    </v-card>
+    <h2 class="mb-5">Актуальные проблемы</h2>
+    <v-row>
+      <v-col :cols="4">
+        <v-card class="pa-2" rounded="lg">
+          <v-card-text>
+            <div>Всего проблем</div>
+            <div class="text-h2 text-right text--primary">
+              <strong
+                class="text--lighten-1"
+                :class="{ 'red--text': problemsLength > 0, 'green--text': problemsLength === 0 }"
+              >
+                {{ problemsLength }}
+              </strong>
+            </div>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn text @click="search = ''"> Показать </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+      <v-col :cols="4">
+        <v-card class="pa-2" rounded="lg" :cols="4">
+          <v-card-text>
+            <div>Проблем с сертификатами</div>
+            <div class="text-h2 text-right text--primary">
+              <strong
+                class="text--lighten-1"
+                :class="{ 'red--text': certProblems > 0, 'green--text': certProblems === 0 }"
+              >
+                {{ certProblems }}
+              </strong>
+            </div>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn text @click="search = 'сертификат'"> Показать </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+      <v-col :cols="4">
+        <v-card class="pa-2" rounded="lg" :cols="4">
+          <v-card-text>
+            <div>Проблем с транзакциями</div>
+            <div class="text-h2 text-right text--primary">
+              <strong
+                class="text--lighten-1"
+                :class="{ 'red--text': transactionProblems > 0, 'green--text': transactionProblems === 0 }"
+              >
+                {{ problems.filter((problem) => problem.type === 'транзакция').length }}
+              </strong>
+            </div>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn text @click="search = 'транзакция'"> Показать </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row class="mb-5">
+      <v-col>
+        <v-card class="pa-2" rounded="lg">
+          <v-data-table :headers="headers" :items="problems" :search="search">
+            <template v-slot:top>
+              <v-text-field v-model="search" label="Поиск" class="mx-4"></v-text-field>
+            </template>
+            <template v-slot:body="{ items }">
+              <tbody>
+                <tr v-for="item in items" :key="item.id">
+                  <td>{{ item.id }}</td>
+                  <td>{{ item.type }}</td>
+                  <td>{{ item.reason }}</td>
+                  <td>{{ item.kind }}</td>
+                  <td>{{ item.company }}</td>
+                  <td>{{ item.date }}</td>
+                </tr>
+              </tbody>
+            </template>
+          </v-data-table>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -27,47 +88,76 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class ActualProblems extends Vue {
-  desserts = [
+  search = '';
+  headers: any = [
+    { text: 'Идентификатор', value: 'id' },
+    { text: 'Тип ошибки', value: 'type' },
+    { text: 'Причина', value: 'reason' },
+    { text: 'Вид нарушения', value: 'kind' },
+    { text: 'Компания', value: 'company' },
+    { text: 'Дата обнаружения', value: 'date' }
+  ];
+  problems = [
     {
-      name: 'Frozen Yogurt',
-      calories: 159
+      id: '0',
+      type: 'сертификат',
+      reason: 'Причина',
+      kind: 'вид нарушения',
+      company: 'компания',
+      date: '2020-08-21'
     },
     {
-      name: 'Ice cream sandwich',
-      calories: 237
+      id: '1',
+      type: 'сертификат',
+      reason: 'Причина',
+      kind: 'вид нарушения',
+      company: 'компания',
+      date: '2020-08-21'
     },
     {
-      name: 'Eclair',
-      calories: 262
+      id: '2',
+      type: 'транзакция',
+      reason: 'Причина',
+      kind: 'вид нарушения',
+      company: 'компания',
+      date: '2020-08-21'
     },
     {
-      name: 'Cupcake',
-      calories: 305
+      id: '3',
+      type: 'транзакция',
+      reason: 'Причина',
+      kind: 'вид нарушения',
+      company: 'компания',
+      date: '2020-08-21'
     },
     {
-      name: 'Gingerbread',
-      calories: 356
+      id: '4',
+      type: 'сертификат',
+      reason: 'Причина',
+      kind: 'вид нарушения',
+      company: 'компания',
+      date: '2020-08-21'
     },
     {
-      name: 'Jelly bean',
-      calories: 375
-    },
-    {
-      name: 'Lollipop',
-      calories: 392
-    },
-    {
-      name: 'Honeycomb',
-      calories: 408
-    },
-    {
-      name: 'Donut',
-      calories: 452
-    },
-    {
-      name: 'KitKat',
-      calories: 518
+      id: '5',
+      type: 'транзакция',
+      reason: 'Причина',
+      kind: 'вид нарушения',
+      company: 'компания',
+      date: '2020-08-21'
     }
   ];
+
+  get certProblems(): number {
+    return this.problems.filter((problem) => problem.type === 'сертификат').length || 0;
+  }
+
+  get transactionProblems(): number {
+    return this.problems.filter((problem) => problem.type === 'транзакция').length || 0;
+  }
+
+  get problemsLength(): number {
+    return this.problems.length || 0;
+  }
 }
 </script>

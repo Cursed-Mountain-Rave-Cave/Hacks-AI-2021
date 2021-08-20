@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  analytics-backend:
+    build: .
+    image: analytics-backend
+    restart: always
+    ports:
+      - 4100:4100
