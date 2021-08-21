@@ -2,7 +2,7 @@ import axios from 'axios';
 import { stringify } from 'qs';
 
 export default axios.create({
-  baseURL: '/',
+  baseURL: 'http://localhost:4100/',
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json'

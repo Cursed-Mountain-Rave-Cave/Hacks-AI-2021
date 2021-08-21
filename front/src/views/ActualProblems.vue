@@ -2,14 +2,14 @@
   <v-container fluid>
     <h2 class="mb-5">Актуальные проблемы</h2>
     <v-row>
-      <v-col :cols="4">
+      <v-col cols="12" sm="12" md="4">
         <v-card class="pa-2" rounded="lg">
           <v-card-text>
             <div>Всего проблем</div>
             <div class="text-h2 text-right text--primary">
               <strong
                 class="text--lighten-1"
-                :class="{ 'red--text': problemsLength > 0, 'green--text': problemsLength === 0 }"
+                :class="{ 'orange--text': problemsLength > 0, 'green--text': problemsLength === 0 }"
               >
                 {{ problemsLength }}
               </strong>
@@ -20,14 +20,14 @@
           </v-card-actions>
         </v-card>
       </v-col>
-      <v-col :cols="4">
-        <v-card class="pa-2" rounded="lg" :cols="4">
+      <v-col cols="12" sm="12" md="4">
+        <v-card class="pa-2" rounded="lg">
           <v-card-text>
             <div>Проблем с сертификатами</div>
             <div class="text-h2 text-right text--primary">
               <strong
                 class="text--lighten-1"
-                :class="{ 'red--text': certProblems > 0, 'green--text': certProblems === 0 }"
+                :class="{ 'orange--text': certProblems > 0, 'green--text': certProblems === 0 }"
               >
                 {{ certProblems }}
               </strong>
@@ -38,14 +38,14 @@
           </v-card-actions>
         </v-card>
       </v-col>
-      <v-col :cols="4">
-        <v-card class="pa-2" rounded="lg" :cols="4">
+      <v-col cols="12" sm="12" md="4">
+        <v-card class="pa-2" rounded="lg">
           <v-card-text>
             <div>Проблем с транзакциями</div>
             <div class="text-h2 text-right text--primary">
               <strong
                 class="text--lighten-1"
-                :class="{ 'red--text': transactionProblems > 0, 'green--text': transactionProblems === 0 }"
+                :class="{ 'orange--text': transactionProblems > 0, 'green--text': transactionProblems === 0 }"
               >
                 {{ problems.filter((problem) => problem.type === 'транзакция').length }}
               </strong>
@@ -85,6 +85,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { DataService } from '@/service/DataService';
 
 @Component
 export default class ActualProblems extends Vue {
@@ -147,6 +148,14 @@ export default class ActualProblems extends Vue {
       date: '2020-08-21'
     }
   ];
+
+  dataService = new DataService();
+
+  // async mounted(): Promise<void> {
+  //   await this.dataService.get('/actual_problems').then((response) => {
+  //     console.log(response);
+  //   });
+  // }
 
   get certProblems(): number {
     return this.problems.filter((problem) => problem.type === 'сертификат').length || 0;

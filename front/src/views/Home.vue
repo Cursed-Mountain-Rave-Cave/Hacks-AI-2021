@@ -42,7 +42,7 @@ export default class Home extends Vue {
   cards = [
     {
       title: 'Актуальные проблемы',
-      description: 'Распонанные проблемы с транзакциями и сертификатами',
+      description: 'Распознанные проблемы с транзакциями и сертификатами',
       color: '#FFCC80',
       class: 'actual_problems',
       to: 'actual_problems'

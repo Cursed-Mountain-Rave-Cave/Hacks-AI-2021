@@ -4,11 +4,12 @@ import { AxiosResponse } from 'axios';
 export class DataService {
   private baseUrl = '';
 
-  constructor(baseUrl = '/v1') {
+  constructor(baseUrl = '') {
     this.baseUrl = baseUrl;
   }
 
-  protected get = async (url = '', data?: any): Promise<any> => {
+  public get = async (url = '', data?: any): Promise<any> => {
+    console.log(data)
     try {
       const response: AxiosResponse<any> = await http.get(`${this.baseUrl}/${url}`, {
         params: data
