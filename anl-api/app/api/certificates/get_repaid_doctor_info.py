@@ -1,4 +1,6 @@
-from sqlalchemy.sql.expression import and_
+from os import name
+from app.models.users import Users
+from sqlalchemy.sql.expression import and_, label
 from typing import Optional
 
 import app.models as m
@@ -12,6 +14,7 @@ def get_repaid_doctor_info(doctor_id: int) -> Optional[DoctorInfo]:
     with session_scope() as session:
         result = (
             session.query(
+                m.Users.name.label("name"),
                 func.count(m.Certificate.id.distinct()).label("certificates_count"),
                 func.count(m.CertificateScore.certificate_id.distinct()).label("mistakes_count"),
             )
@@ -22,13 +25,15 @@ def get_repaid_doctor_info(doctor_id: int) -> Optional[DoctorInfo]:
                     m.CertificateScore.score > settings.SCORE_ERROR_THRESHOLD,
                 ),
             )
+            .outerjoin(m.Users, m.Users.id == doctor_id)
             .filter(m.Certificate.repaid_doctor_id == doctor_id)
+            .group_by(m.Users.name)
             .first()
         )
 
         mistakes_ratio = (
             result["mistakes_count"] / result["certificates_count"]
-            if result["certificates_count"] != 0
+            if result and result["certificates_count"] != 0
             else 0
         )
 
@@ -75,7 +80,8 @@ def get_repaid_doctor_info(doctor_id: int) -> Optional[DoctorInfo]:
         ))
 
         return {
+            "name": result["name"],
             "mistakes_ratio": mistakes_ratio,
             "given_certificates": given_certificates,
             "product_mistakes_ratio": product_mistakes_ratio,
-        }
+        } if result else None

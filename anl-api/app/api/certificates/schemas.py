@@ -87,6 +87,7 @@ class ProductionMistakesRatio(BaseModel):
 
 
 class DoctorInfo(BaseModel):
+    name: str
     mistakes_ratio: float
     given_certificates: list[GivenCertificate]
     product_mistakes_ratio: list[ProductionMistakesRatio]
