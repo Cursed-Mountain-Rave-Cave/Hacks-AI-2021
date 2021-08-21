@@ -26,7 +26,7 @@ from .former import Former
 class Certificate(Base):
     __tablename__ = "certificate"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(BigInteger, primary_key=True)
     cert_type_id = Column(ForeignKey(CertificateType.id))
     cert_vetform_id = Column(ForeignKey(CertificateVetform.id))
     cert_status_id = Column(ForeignKey(CertificateStatus.id))
