@@ -152,7 +152,11 @@ def insert_region(session: Session):
     region_df["last"] = region_df["last"].apply(lambda last: int(last == "Y"))
     session.bulk_insert_mappings(
         models.Region,
-        map(lambda r: dict(r[1]), region_df.iterrows()),
+        map(lambda r: dict(r[1]), region_df.query("last == 1").iterrows()),
+    )
+    session.bulk_insert_mappings(
+        models.Region,
+        [{"id": -1, "guid": "00000000-0000-0000-0000-000000000000", "name": ""}],
     )
 
 

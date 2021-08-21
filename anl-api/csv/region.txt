@@ -1,4 +1,4 @@
-id;name;guid;last;federalDistrict;guidCountry
+id;name;guid;last;federal_district;guid_country
 67;Республика Тыва;026bc56f-3731-48e9-8245-655331f596c0;Y;5;74a3cbb1-56fa-94f3-ab3f-e8db4940d96b
 36;Омская область;05426864-466d-41a3-82c4-11e61cdc98ce;Y;5;74a3cbb1-56fa-94f3-ab3f-e8db4940d96b
 17;Ивановская область;0824434f-4098-4467-af72-d4f702fed335;Y;1;74a3cbb1-56fa-94f3-ab3f-e8db4940d96b
@@ -37,6 +37,7 @@ id;name;guid;last;federalDistrict;guidCountry
 1;Алтайский край;8276c6a1-1a86-4f0d-8920-aba34d4cc34a;Y;5;74a3cbb1-56fa-94f3-ab3f-e8db4940d96b
 9;Астраханская область;83009239-25cb-4561-af8e-7ee111b1cb73;Y;2;74a3cbb1-56fa-94f3-ab3f-e8db4940d96b
 7;Амурская область;844a80d6-5e31-4017-b422-4d9c01e9942c;N;4;74a3cbb1-56fa-94f3-ab3f-e8db4940d96b
+3391;Амурская область;844a80d6-5e31-4017-b422-4d9c01e9942c;Y;4;74a3cbb1-56fa-94f3-ab3f-e8db4940d96b
 70;Чувашская Республика;878fc621-3708-46c7-a97f-5a13a4176b3e;Y;7;74a3cbb1-56fa-94f3-ab3f-e8db4940d96b
 49;Томская область;889b1f3a-98aa-40fc-9d3d-0f41192758ab;Y;5;74a3cbb1-56fa-94f3-ab3f-e8db4940d96b
 16;Нижегородская область;88cd27e2-6a8a-4421-9718-719a28a0a088;Y;7;74a3cbb1-56fa-94f3-ab3f-e8db4940d96b
@@ -74,6 +75,7 @@ id;name;guid;last;federalDistrict;guidCountry
 42;Ростовская область;f10763dc-63e3-48db-83e1-9c566fe3092b;Y;2;74a3cbb1-56fa-94f3-ab3f-e8db4940d96b
 79;Чукотский автономный округ;f136159b-404a-4f1f-8d8d-d169e1374d5c;Y;4;74a3cbb1-56fa-94f3-ab3f-e8db4940d96b
 11;Брянская область;f5807226-8be0-4ea8-91fc-39d053aec1e2;Y;1;74a3cbb1-56fa-94f3-ab3f-e8db4940d96b
+3389;Псковская область;f6e148a1-c9d0-4141-a608-93e3bd95e6c4;Y;3;74a3cbb1-56fa-94f3-ab3f-e8db4940d96b
 54;Ульяновская область;fee76045-fe22-43a4-ad58-ad99e903bd58;Y;7;74a3cbb1-56fa-94f3-ab3f-e8db4940d96b
 41;Псковская область (до 17.11.2017);f6e148a1-c9d0-4141-a608-93e3bd95e6c4;N;3;74a3cbb1-56fa-94f3-ab3f-e8db4940d96b
 30;Липецкая область;1490490e-49c5-421c-9572-5673ba5d80c8;Y;1;74a3cbb1-56fa-94f3-ab3f-e8db4940d96b
