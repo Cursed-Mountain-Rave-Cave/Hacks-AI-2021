@@ -21,6 +21,7 @@ from .sub_region import SubRegion
 from .transfer_type import TransferType
 from .unit import Unit
 from .users import Users
+from .certificate_score import CertificateScore
 
 
 __all__ = (
@@ -47,4 +48,5 @@ __all__ = (
     "TransferType",
     "Unit",
     "Users",
+    "CertificateScore",
 )
