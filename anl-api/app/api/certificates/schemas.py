@@ -70,3 +70,5 @@ class Certificate(BaseModel):
 class Stats(BaseModel):
     doctors_count: int
     certificates_count: int
+    mistakes_count: int
+    mistakes_ratio: float
