@@ -11,8 +11,16 @@
         </v-card>
       </v-col>
     </v-row>
-    {{ doctorInfo.mistakes_ratio }}
-    {{ doctorInfo.product_mistakes_ratio }}
+    <v-divider />
+    <h4 class="mt-4 mb-2">Количество ошибок по типам продукции</h4>
+    <v-row>
+      <v-col cols="3" v-for="(product, key) in doctorInfo.product_mistakes_ratio" :key="key">
+        <v-card class="pa-2" rounded="lg">
+          <v-card-title class="fs-11"> {{ product.product_type }}</v-card-title>
+          <v-card-text> {{ product.mistakes_ratio }}</v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -109,5 +117,9 @@ export default class Doctor extends Vue {
 #chartdiv {
   width: 100%;
   height: 300px;
+}
+
+.fs-11 {
+  font-size: 14px;
 }
 </style>

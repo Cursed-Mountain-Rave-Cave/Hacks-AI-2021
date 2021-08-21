@@ -1,5 +1,6 @@
 <template>
   <v-container fluid>
+    <v-progress-linear :active="loading" indeterminate color="purple darken-2"></v-progress-linear>
     <h2 class="mb-5">Транспортные транзакции</h2>
     <v-row v-if="Object.keys(stats).length > 0">
       <v-col md="3" sm="6" xs="12">
@@ -19,7 +20,7 @@
         <stats-card title="Процент ошибок" problem-color="purple--text" :stat="stats.mistakes_ratio" is-percent />
       </v-col>
     </v-row>
-    <v-row>
+    <v-row v-if="Object.keys(stats).length > 0">
       <v-col>
         <v-card class="mb-5 pa-2" rounded="lg">
           <v-data-table
@@ -121,7 +122,7 @@
                   <v-list-item-subtitle>Погасил сертификат</v-list-item-subtitle>
                   <v-list-item-subtitle>
                     Дата погашения:
-                    <template v-if="drawerData.repaid_cert_date">{{ drawerData.repaid_cert_date }}</template>
+                    <template v-if="drawerData.repaid_doctor_id > -1">{{ drawerData.repaid_cert_date }}</template>
                     <template v-else> Сертификат не погашен </template>
                   </v-list-item-subtitle>
                 </v-list-item-content>
@@ -198,8 +199,10 @@ export default class TransportTransaction extends Vue {
   drawer = false;
   drawerData = {};
   dataService = new DataService();
+  loading = true;
 
   async mounted(): Promise<void> {
+    this.loading = true;
     await this.dataService.get('certificates', { limit: 2000 }).then((response) => {
       this.certificates = response;
     });
@@ -207,6 +210,7 @@ export default class TransportTransaction extends Vue {
     await this.dataService.get('certificates/stats').then((response) => {
       this.stats = response;
     });
+    this.loading = false;
   }
 
   public showDrawer(data: any): void {
