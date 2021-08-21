@@ -65,3 +65,8 @@ class Certificate(BaseModel):
     milk_attr_protein_min: Optional[float]  # Массовая доля белка минимальное значение Decimal
     milk_attr_protein_max: Optional[float]  # Массовая доля белка максимальное значение Decimal
     milk_attr_protein_type: Optional[int]  # Массовая доля белка тип интервала Integer
+
+
+class Stats(BaseModel):
+    doctors_count: int
+    certificates_count: int
