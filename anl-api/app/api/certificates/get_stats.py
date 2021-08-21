@@ -1,7 +1,6 @@
 from sqlalchemy.sql.expression import and_
 from typing import Optional
 
-from sqlalchemy import and_
 import app.models as m
 from app.services.postgres import session_scope
 from .schemas import Stats

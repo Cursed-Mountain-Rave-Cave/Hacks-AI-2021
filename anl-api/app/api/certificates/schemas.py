@@ -1,6 +1,6 @@
 from typing import Optional
 from pydantic import BaseModel
-from datetime import datetime
+from datetime import date, datetime
 
 
 class Certificate(BaseModel):
@@ -72,3 +72,19 @@ class Stats(BaseModel):
     certificates_count: int
     mistakes_count: int
     mistakes_ratio: float
+
+
+class GivenCertificate(BaseModel):
+    date: date
+    count: int
+
+
+class ProductionMistakesRatio(BaseModel):
+    product_type: str
+    mistakes_ratio: float
+
+
+class DoctorInfo(BaseModel):
+    mistakes_ratio: float
+    given_certificates: list[GivenCertificate]
+    product_mistakes_ratio: list[ProductionMistakesRatio]
