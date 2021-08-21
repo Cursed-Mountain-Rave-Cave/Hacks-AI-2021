@@ -86,11 +86,12 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { DataService } from '@/service/DataService';
+import IHeader from '@/interfaces/IHeader';
 
 @Component
 export default class ActualProblems extends Vue {
   search = '';
-  headers: any = [
+  headers: IHeader[] = [
     { text: 'Идентификатор', value: 'id' },
     { text: 'Тип ошибки', value: 'type' },
     { text: 'Причина', value: 'reason' },
