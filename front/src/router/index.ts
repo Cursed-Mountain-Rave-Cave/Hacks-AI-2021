@@ -4,6 +4,7 @@ import Home from '@/views/Home.vue';
 import ActualProblems from '@/views/ActualProblems.vue';
 import Certificates from '@/views/Certificates.vue';
 import ProductionTypes from '@/views/ProductionTypes.vue';
+import Doctor from '@/views/Doctor.vue';
 
 Vue.use(VueRouter);
 
@@ -36,6 +37,16 @@ const routes: Array<RouteConfig> = [
     meta: {
       class: 'production_types'
     }
+  },
+  {
+    path: '/doctor/:id',
+    name: 'Doctor',
+    component: Doctor
+  },
+  {
+    path: '/repaid_doctor/:id',
+    name: 'RepaidDoctor',
+    component: Doctor
   }
 ];
 

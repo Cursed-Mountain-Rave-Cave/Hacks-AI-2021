@@ -17,12 +17,31 @@
     <v-divider></v-divider>
 
     <v-list nav dense>
-      <v-list-item link v-for="(link, key) in links" :key="key" v-model="selectedItem" :to="link.to">
-        <v-list-item-icon>
-          <v-icon>{{ link.icon }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-title>{{ link.title }}</v-list-item-title>
-      </v-list-item>
+      <template v-for="(link, key) in links">
+        <v-list-group v-if="link.child" :value="true" :prepend-icon="link.icon" :key="key">
+          <template v-slot:activator>
+            <v-list-item-title>{{ link.title }}</v-list-item-title>
+          </template>
+          <v-list-item
+            v-for="(childLink, childKey) in link.child"
+            link
+            :key="`child-${childKey}`"
+            v-model="selectedItem"
+            :to="childLink.to"
+          >
+            <v-list-item-icon>
+              <v-icon>{{ childLink.icon }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>{{ childLink.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list-group>
+        <v-list-item v-else link :key="key" v-model="selectedItem" :to="link.to">
+          <v-list-item-icon>
+            <v-icon>{{ link.icon }}</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>{{ link.title }}</v-list-item-title>
+        </v-list-item>
+      </template>
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -42,14 +61,20 @@ export default class AiwcNavigation extends Vue {
       icon: 'mdi-alert'
     },
     {
-      title: 'Типы продукции',
-      to: 'production_types',
-      icon: 'mdi-food-variant'
-    },
-    {
-      title: 'Сертификаты',
-      to: 'certificates',
-      icon: 'mdi-certificate'
+      title: 'Аналитика',
+      icon: 'mdi-google-analytics',
+      child: [
+        {
+          title: 'Типы продукции',
+          to: 'production_types',
+          icon: 'mdi-food-variant'
+        },
+        {
+          title: 'Сертификаты',
+          to: 'certificates',
+          icon: 'mdi-certificate'
+        }
+      ]
     }
   ];
   isMini = true;

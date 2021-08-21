@@ -6,7 +6,7 @@
         <v-card class="pa-2" rounded="lg">
           <v-card-text>
             <div>Всего проблем</div>
-            <div class="text-h2 text-right text--primary">
+            <div class="text-h4 text-right text--primary">
               <strong
                 class="text--lighten-1"
                 :class="{ 'orange--text': problemsLength > 0, 'green--text': problemsLength === 0 }"
@@ -24,7 +24,7 @@
         <v-card class="pa-2" rounded="lg">
           <v-card-text>
             <div>Проблем с сертификатами</div>
-            <div class="text-h2 text-right text--primary">
+            <div class="text-h4 text-right text--primary">
               <strong
                 class="text--lighten-1"
                 :class="{ 'orange--text': certProblems > 0, 'green--text': certProblems === 0 }"
@@ -42,7 +42,7 @@
         <v-card class="pa-2" rounded="lg">
           <v-card-text>
             <div>Проблем с транзакциями</div>
-            <div class="text-h2 text-right text--primary">
+            <div class="text-h4 text-right text--primary">
               <strong
                 class="text--lighten-1"
                 :class="{ 'orange--text': transactionProblems > 0, 'green--text': transactionProblems === 0 }"
