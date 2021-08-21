@@ -40,7 +40,6 @@ class Certificate(Base):
     sub_product_id = Column(ForeignKey(SubProduct.id))
     product_id = Column(ForeignKey(Product.id))
     doctor_id = Column(ForeignKey(Users.id))
-    unit_guid = Column(ForeignKey(Unit.guid))
     unit_id = Column(ForeignKey(Unit.id))
     base_unit_id = Column(ForeignKey(Unit.id))
     cert_date = Column(DateTime)

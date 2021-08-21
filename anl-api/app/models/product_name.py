@@ -12,6 +12,6 @@ class ProductName(Base):
     name = Column(String(500))
     sub_product_id = Column(ForeignKey(SubProduct.id))
     fit_gost = Column(Integer)
-    sub_product_guid = Column(ForeignKey(SubProduct.guid))
+    sub_product_guid = Column(String(36))
     is_last = Column(Integer)
     active = Column(Integer)

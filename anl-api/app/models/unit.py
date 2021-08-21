@@ -10,7 +10,7 @@ class Unit(Base):
     name = Column(String(500))
     base_unit_id = Column(Integer)
     ratio = Column(Integer)
-    guid = Column(String(36), unique=True)
+    guid = Column(String(36))
     last = Column(Integer)
     uuid = Column(String(36))
     base_unit_uuid = Column(String(36))

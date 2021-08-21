@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     RELOAD = True
 
     POSTGRES_DSN = "postgresql://anl:example@localhost:5432/anl"
+    POSTGRES_ECHO = True
 
 
 settings = Settings()

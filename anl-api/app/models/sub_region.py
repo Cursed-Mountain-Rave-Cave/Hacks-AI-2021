@@ -9,7 +9,7 @@ from .region import Region
 class SubRegion(Base):
     __tablename__ = "sub_region"
 
-    guid = Column(Integer, primary_key=True)
+    guid = Column(String(36), primary_key=True)
     name = Column(String(500))
     guid_country = Column(ForeignKey(Country.guid))
     iso_name = Column(String(3))

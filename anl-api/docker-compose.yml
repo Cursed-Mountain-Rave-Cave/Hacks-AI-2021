@@ -7,6 +7,7 @@ services:
     restart: always
     environment:
       RELOAD: 'False'
+      POSTGRES_ECHO: 'False'
       POSTGRES_DSN: postgresql://anl:example@analytics-portgres:5432/anl
     ports:
       - 4100:4000
