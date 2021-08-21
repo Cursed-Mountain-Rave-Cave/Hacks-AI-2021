@@ -27,7 +27,7 @@
             link
             :key="`child-${childKey}`"
             v-model="selectedItem"
-            :to="childLink.to"
+            :to="{ name: childLink.to }"
           >
             <v-list-item-icon>
               <v-icon>{{ childLink.icon }}</v-icon>
@@ -35,7 +35,7 @@
             <v-list-item-title>{{ childLink.title }}</v-list-item-title>
           </v-list-item>
         </v-list-group>
-        <v-list-item v-else link :key="key" v-model="selectedItem" :to="link.to">
+        <v-list-item v-else link :key="key" v-model="selectedItem" :to="{ name: link.to }">
           <v-list-item-icon>
             <v-icon>{{ link.icon }}</v-icon>
           </v-list-item-icon>
@@ -57,7 +57,7 @@ export default class AiwcNavigation extends Vue {
   links: ILink[] = [
     {
       title: 'Актуальные проблемы',
-      to: 'actual_problems',
+      to: 'ActualProblems',
       icon: 'mdi-alert'
     },
     {
@@ -65,14 +65,19 @@ export default class AiwcNavigation extends Vue {
       icon: 'mdi-google-analytics',
       child: [
         {
-          title: 'Типы продукции',
-          to: 'production_types',
-          icon: 'mdi-food-variant'
+          title: 'Инвентаризация',
+          to: 'Inventory',
+          icon: 'mdi-warehouse'
         },
         {
-          title: 'Сертификаты',
-          to: 'certificates',
-          icon: 'mdi-certificate'
+          title: 'Транспортные транзакции',
+          to: 'TransportTransaction',
+          icon: 'mdi-truck'
+        },
+        {
+          title: 'Производственные транзакции',
+          to: 'ProductionTransaction',
+          icon: 'mdi-factory'
         }
       ]
     }

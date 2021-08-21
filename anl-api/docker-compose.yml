@@ -22,4 +22,4 @@ services:
       POSTGRES_USER: anl
       POSTGRES_PASSWORD: example
     volumes:
-      - /opt/anl/postgresql:/var/lib/postgresql/data
+      - /opt/anl/postgresql:/var/lib/psql/data

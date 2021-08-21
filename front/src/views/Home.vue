@@ -48,18 +48,25 @@ export default class Home extends Vue {
       to: 'actual_problems'
     },
     {
-      title: 'Типы продукции',
-      description: 'Информация по типам продукции',
+      title: 'Инвентаризация',
+      description: 'Информация по инвентаризации',
       color: '#A5D6A7',
-      class: 'production_types',
-      to: 'production_types'
+      class: 'inventory',
+      to: 'inventory'
     },
     {
-      title: 'Сертификаты',
-      description: 'Информация по сертификатам',
+      title: 'Транспортные транзакции',
+      description: 'Информация по транспортным транзакциям',
       color: '#B39DDB',
-      class: 'certificates',
-      to: 'certificates'
+      class: 'transport_transaction',
+      to: 'transport_transaction'
+    },
+    {
+      title: 'Производственные транзакции',
+      description: 'Информация по производственным транзакциям',
+      color: '#B39DDB',
+      class: 'production_transaction',
+      to: 'production_transaction'
     }
   ];
 }
