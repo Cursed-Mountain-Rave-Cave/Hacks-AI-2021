@@ -67,5 +67,6 @@ class Certificate(BaseModel):
     milk_attr_protein_type: Optional[int]  # Массовая доля белка тип интервала Integer
 
 
-class DoctorsCount(BaseModel):
-    count: int
+class Stats(BaseModel):
+    doctors_count: int
+    certificates_count: int
