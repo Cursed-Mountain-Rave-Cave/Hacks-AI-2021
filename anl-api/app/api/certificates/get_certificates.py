@@ -12,7 +12,7 @@ def get_certificates(
     with session_scope() as session:
         return (
             get_certificate_query_base(session)
-            .order_by(m.Certificate.cert_date)
+            .order_by(m.Certificate.cert_insert_date)
             .offset(offset)
             .limit(limit)
             .all()
