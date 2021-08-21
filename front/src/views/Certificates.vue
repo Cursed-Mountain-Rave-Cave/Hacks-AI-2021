@@ -64,10 +64,11 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { DataService } from '@/service/DataService';
+import IHeader from '@/interfaces/IHeader';
 
 @Component
 export default class Certificates extends Vue {
-  headers = [
+  headers: IHeader[] = [
     {
       text: 'Пользователь, оформивший ВСД',
       value: 'doctor'

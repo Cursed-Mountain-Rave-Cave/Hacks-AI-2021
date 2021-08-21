@@ -30,10 +30,12 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
+import ILink from '@/interfaces/ILink';
+
 @Component
 export default class AiwcNavigation extends Vue {
   selectedItem = 0;
-  links = [
+  links: ILink[] = [
     {
       title: 'Актуальные проблемы',
       to: 'actual_problems',
@@ -51,12 +53,10 @@ export default class AiwcNavigation extends Vue {
     }
   ];
   isMini = true;
-  user = {
-    fullName: 'Ai we can'
-  };
+  teamName = 'Ai we can';
 
   get name(): string {
-    return this.isMini ? this.user.fullName[0] : this.user.fullName;
+    return this.isMini ? this.teamName[0] : this.teamName;
   }
 }
 </script>
