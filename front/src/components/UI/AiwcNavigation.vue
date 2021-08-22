@@ -28,6 +28,7 @@
             :key="`child-${childKey}`"
             v-model="selectedItem"
             :to="{ name: childLink.to }"
+            :class="{ disabled: childLink.disable }"
           >
             <v-list-item-icon>
               <v-icon>{{ childLink.icon }}</v-icon>
@@ -58,26 +59,31 @@ export default class AiwcNavigation extends Vue {
     {
       title: 'Актуальные проблемы',
       to: 'ActualProblems',
-      icon: 'mdi-alert'
+      icon: 'mdi-alert',
+      disable: false
     },
     {
       title: 'Аналитика',
       icon: 'mdi-google-analytics',
+      disable: false,
       child: [
         {
           title: 'Инвентаризация',
           to: 'Inventory',
-          icon: 'mdi-warehouse'
+          icon: 'mdi-warehouse',
+          disable: true
         },
         {
           title: 'Транспортные транзакции',
           to: 'TransportTransaction',
-          icon: 'mdi-truck'
+          icon: 'mdi-truck',
+          disable: false
         },
         {
           title: 'Производственные транзакции',
           to: 'ProductionTransaction',
-          icon: 'mdi-factory'
+          icon: 'mdi-factory',
+          disable: true
         }
       ]
     }
@@ -90,3 +96,9 @@ export default class AiwcNavigation extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.disabled {
+  cursor: auto !important;
+}
+</style>

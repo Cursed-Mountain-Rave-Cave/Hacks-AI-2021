@@ -12,12 +12,12 @@
       </v-col>
     </v-row>
     <v-divider />
-    <h4 class="mt-4 mb-2">Количество ошибок по типам продукции</h4>
+    <h4 class="mt-4 mb-2">Процент ошибок по типам продукции</h4>
     <v-row>
       <v-col cols="3" v-for="(product, key) in doctorInfo.product_mistakes_ratio" :key="key">
         <v-card class="pa-2" rounded="lg">
           <v-card-title class="fs-11"> {{ product.product_type }}</v-card-title>
-          <v-card-text> {{ product.mistakes_ratio }}</v-card-text>
+          <v-card-text> {{ product.mistakes_ratio * 100 }}%</v-card-text>
         </v-card>
       </v-col>
     </v-row>

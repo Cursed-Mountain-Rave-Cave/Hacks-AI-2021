@@ -11,4 +11,5 @@ export interface ICard extends IInfo {
   color: string;
   class: string;
   to: string;
+  disable: boolean;
 }

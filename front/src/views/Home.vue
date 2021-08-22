@@ -19,7 +19,7 @@
             <div class="text--primary"> {{ card.description }} </div>
           </v-card-text>
           <v-card-actions>
-            <v-btn class="ml-2 mt-3" text link :to="card.to"> Перейти </v-btn>
+            <v-btn class="ml-2 mt-3" text link :to="card.to" :disabled="card.disable"> Перейти </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -42,31 +42,35 @@ export default class Home extends Vue {
   cards: ICard[] = [
     {
       title: 'Актуальные проблемы',
-      description: 'Распознанные проблемы с транзакциями и сертификатами',
+      description: 'Распознанные проблемы с транзакциями',
       color: '#FFCC80',
       class: 'actual_problems',
-      to: 'actual_problems'
+      to: 'actual_problems',
+      disable: false
     },
     {
       title: 'Инвентаризация',
       description: 'Информация по инвентаризации',
       color: '#A5D6A7',
       class: 'inventory',
-      to: 'inventory'
+      to: 'inventory',
+      disable: true
     },
     {
       title: 'Транспортные транзакции',
       description: 'Информация по транспортным транзакциям',
       color: '#B39DDB',
       class: 'transport_transaction',
-      to: 'transport_transaction'
+      to: 'transport_transaction',
+      disable: false
     },
     {
       title: 'Производственные транзакции',
       description: 'Информация по производственным транзакциям',
       color: '#B39DDB',
       class: 'production_transaction',
-      to: 'production_transaction'
+      to: 'production_transaction',
+      disable: true
     }
   ];
 }

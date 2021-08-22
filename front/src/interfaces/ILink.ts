@@ -3,4 +3,5 @@ export default interface ILink {
   to?: string;
   icon: string;
   child?: ILink[];
+  disable: boolean;
 }
