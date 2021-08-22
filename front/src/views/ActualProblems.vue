@@ -208,7 +208,7 @@ export default class ActualProblems extends Vue {
   loading = true;
   headers: IHeader[] = [
     { text: 'Идентификатор', value: 'certificate_id' },
-    { text: 'Score', value: 'score' },
+    { text: 'Скоринговый балл', value: 'score' },
     { text: 'Причина нарушения', value: 'score_violation_type' },
     { text: 'Дата обнаружения', value: 'score_date' }
   ];
