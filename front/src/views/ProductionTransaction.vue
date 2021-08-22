@@ -1,23 +1,23 @@
 <template>
   <v-container fluid>
-    <v-progress-linear :active="loading" indeterminate color="purple darken-2"></v-progress-linear>
-    <h2 class="mb-5">Транспортные транзакции</h2>
+    <v-progress-linear :active="loading" indeterminate color="green darken-2"></v-progress-linear>
+    <h2 class="mb-5">Производственные транзакции</h2>
     <v-row v-if="Object.keys(stats).length > 0">
       <v-col md="3" sm="6" xs="12">
         <stats-card
           title="Количество пользователей, оформивших ВСД"
-          problem-color="purple--text"
+          problem-color="green--text"
           :stat="stats.doctors_count"
         />
       </v-col>
       <v-col md="3" sm="6" xs="12">
-        <stats-card title="Количество сертификатов" problem-color="purple--text" :stat="certificates.length" />
+        <stats-card title="Количество сертификатов" problem-color="green--text" :stat="certificates.length" />
       </v-col>
       <v-col md="3" sm="6" xs="12">
-        <stats-card title="Количество ошибок" problem-color="purple--text" :stat="stats.mistakes_count" />
+        <stats-card title="Количество ошибок" problem-color="green--text" :stat="stats.mistakes_count" />
       </v-col>
       <v-col md="3" sm="6" xs="12">
-        <stats-card title="Процент ошибок" problem-color="purple--text" :stat="stats.mistakes_ratio" is-percent />
+        <stats-card title="Процент ошибок" problem-color="green--text" :stat="stats.mistakes_ratio" is-percent />
       </v-col>
     </v-row>
     <v-row v-if="Object.keys(stats).length > 0">
@@ -155,7 +155,7 @@ import IHeader from '@/interfaces/IHeader';
     StatsCard
   }
 })
-export default class TransportTransaction extends Vue {
+export default class ProductionTransaction extends Vue {
   headers: IHeader[] = [
     {
       text: 'Пользователь, оформивший ВСД',
@@ -204,7 +204,7 @@ export default class TransportTransaction extends Vue {
   async mounted(): Promise<void> {
     this.loading = true;
     await this.dataService.get('certificates', { limit: 2000 }).then((response) => {
-      this.certificates = response.filter((res: any) => res.cert_type === 'Транспортный');
+      this.certificates = response.filter((res: any) => res.cert_type === 'Производственный');
     });
 
     await this.dataService.get('certificates/stats').then((response) => {

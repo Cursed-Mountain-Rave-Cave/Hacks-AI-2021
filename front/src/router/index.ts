@@ -3,7 +3,7 @@ import VueRouter, { RouteConfig } from 'vue-router';
 import Home from '@/views/Home.vue';
 import ActualProblems from '@/views/ActualProblems.vue';
 import TransportTransaction from '@/views/TransportTransaction.vue';
-import ProductionTransaction from '@/views/ProductionTypes.vue';
+import ProductionTransaction from '@/views/ProductionTransaction.vue';
 import Inventory from '@/views/ProductionTypes.vue';
 import Doctor from '@/views/Doctor.vue';
 
