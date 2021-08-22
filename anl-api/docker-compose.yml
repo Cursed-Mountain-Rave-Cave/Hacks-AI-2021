@@ -4,6 +4,7 @@ services:
   analytics-backend:
     build: .
     image: analytics-backend
+    container_name: analytics-backend
     restart: always
     environment:
       RELOAD: 'False'
@@ -17,6 +18,7 @@ services:
     ports:
       - 5432:5432
     restart: always
+    container_name: analytics-portgres
     environment:
       POSTGRES_DB: anl
       POSTGRES_USER: anl
