@@ -70,7 +70,7 @@ export default class Home extends Vue {
       color: '#B39DDB',
       class: 'production_transaction',
       to: 'production_transaction',
-      disable: true
+      disable: false
     }
   ];
 }
