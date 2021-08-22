@@ -38,7 +38,7 @@ def insert_certificates_head(session: Session):
             [
                 {
                     "certificate_id": id,
-                    "score": random() ** 7,
+                    "score": random() ** 5,
                     "score_violation_type": violation_type,
                 }
                 for id in IDS
