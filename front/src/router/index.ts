@@ -2,8 +2,10 @@ import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import Home from '@/views/Home.vue';
 import ActualProblems from '@/views/ActualProblems.vue';
-import Certificates from '@/views/Certificates.vue';
-import ProductionTypes from '@/views/ProductionTypes.vue';
+import TransportTransaction from '@/views/TransportTransaction.vue';
+import ProductionTransaction from '@/views/ProductionTypes.vue';
+import Inventory from '@/views/ProductionTypes.vue';
+import Doctor from '@/views/Doctor.vue';
 
 Vue.use(VueRouter);
 
@@ -22,20 +24,38 @@ const routes: Array<RouteConfig> = [
     }
   },
   {
-    path: '/certificates',
-    name: 'Certidicates',
-    component: Certificates,
+    path: '/inventory',
+    name: 'Inventory',
+    component: Inventory,
     meta: {
-      class: 'certificates'
+      class: 'inventory'
     }
   },
   {
-    path: '/production_types',
-    name: 'ProductionTypes',
-    component: ProductionTypes,
+    path: '/transport_transaction',
+    name: 'TransportTransaction',
+    component: TransportTransaction,
     meta: {
-      class: 'production_types'
+      class: 'transport_transaction'
     }
+  },
+  {
+    path: '/production_transaction',
+    name: 'ProductionTransaction',
+    component: ProductionTransaction,
+    meta: {
+      class: 'production_transaction'
+    }
+  },
+  {
+    path: '/doctor/:id',
+    name: 'Doctor',
+    component: Doctor
+  },
+  {
+    path: '/repaid_doctor/:id',
+    name: 'RepaidDoctor',
+    component: Doctor
   }
 ];
 

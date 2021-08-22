@@ -1,92 +1,48 @@
 <template>
   <v-container fluid>
-    <v-progress-linear :active="loading" indeterminate color="orange darken-2"></v-progress-linear>
-    <h2 class="mb-5">Актуальные проблемы</h2>
-    <!-- <v-row>
-      <v-col cols="12" sm="12" md="4">
-        <v-card class="pa-2" rounded="lg">
-          <v-card-text>
-            <div>Всего проблем</div>
-            <div class="text-h4 text-right text--primary">
-              <strong
-                class="text--lighten-1"
-                :class="{ 'orange--text': problemsLength > 0, 'green--text': problemsLength === 0 }"
-              >
-                {{ problemsLength }}
-              </strong>
-            </div>
-          </v-card-text>
-          <v-card-actions>
-            <v-btn text @click="search = ''"> Показать </v-btn>
-          </v-card-actions>
-        </v-card>
+    <v-progress-linear :active="loading" indeterminate color="purple darken-2"></v-progress-linear>
+    <h2 class="mb-5">Транспортные транзакции</h2>
+    <v-row v-if="Object.keys(stats).length > 0">
+      <v-col md="3" sm="6" xs="12">
+        <stats-card
+          title="Количество пользователей, оформивших ВСД"
+          problem-color="purple--text"
+          :stat="stats.doctors_count"
+        />
       </v-col>
-      <v-col cols="12" sm="12" md="4">
-        <v-card class="pa-2" rounded="lg">
-          <v-card-text>
-            <div>Проблем с сертификатами</div>
-            <div class="text-h4 text-right text--primary">
-              <strong
-                class="text--lighten-1"
-                :class="{ 'orange--text': certProblems > 0, 'green--text': certProblems === 0 }"
-              >
-                {{ certProblems }}
-              </strong>
-            </div>
-          </v-card-text>
-          <v-card-actions>
-            <v-btn text @click="search = 'сертификат'"> Показать </v-btn>
-          </v-card-actions>
-        </v-card>
+      <v-col md="3" sm="6" xs="12">
+        <stats-card title="Количество сертификатов" problem-color="purple--text" :stat="stats.certificates_count" />
       </v-col>
-      <v-col cols="12" sm="12" md="4">
-        <v-card class="pa-2" rounded="lg">
-          <v-card-text>
-            <div>Проблем с транзакциями</div>
-            <div class="text-h4 text-right text--primary">
-              <strong
-                class="text--lighten-1"
-                :class="{ 'orange--text': transactionProblems > 0, 'green--text': transactionProblems === 0 }"
-              >
-                {{ problems.filter((problem) => problem.type === 'транзакция').length }}
-              </strong>
-            </div>
-          </v-card-text>
-          <v-card-actions>
-            <v-btn text @click="search = 'транзакция'"> Показать </v-btn>
-          </v-card-actions>
-        </v-card>
+      <v-col md="3" sm="6" xs="12">
+        <stats-card title="Количество ошибок" problem-color="purple--text" :stat="stats.mistakes_count" />
       </v-col>
-    </v-row> -->
-    <v-row class="mb-5">
+      <v-col md="3" sm="6" xs="12">
+        <stats-card title="Процент ошибок" problem-color="purple--text" :stat="stats.mistakes_ratio" is-percent />
+      </v-col>
+    </v-row>
+    <v-row v-if="Object.keys(stats).length > 0">
       <v-col>
-        <v-card class="pa-2" rounded="lg">
+        <v-card class="mb-5 pa-2" rounded="lg">
           <v-data-table
-            class="actual_problem"
+            class="transport_transactions"
             :headers="headers"
-            :items="problems"
-            :search="search"
+            :items="certificates"
             @click:row="showDrawer"
-          >
-            <template v-slot:top>
-              <v-text-field v-model="search" label="Поиск" class="mx-4"></v-text-field>
-            </template>
-          </v-data-table>
+          />
         </v-card>
       </v-col>
     </v-row>
     <v-navigation-drawer v-model="drawer" width="550" absolute temporary right>
-      <v-progress-linear :active="loading" indeterminate color="orange darken-2"></v-progress-linear>
       <v-row>
         <v-col>
-          <v-card elevation="0" class="ma-1 text-center">
+          <v-card elevation="0" class="ma-3 text-center">
             <v-list-item three-line>
               <v-list-item-content>
                 <div class="text-overline mb-4">
                   {{ drawerData.cert_request_type }} / {{ drawerData.cert_reqsource_type }} /
                   {{ drawerData.cert_nature_type }}
                 </div>
-                <v-list-item-title class="text-h5"> {{ drawerData.product }} </v-list-item-title>
+                <v-list-item-title class="text-h5 mb-1"> {{ drawerData.product }} </v-list-item-title>
                 <v-list-item-subtitle>{{ drawerData.sub_product }}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
@@ -96,7 +52,7 @@
       <v-divider />
       <v-row>
         <v-col :cols="12">
-          <div class="text-center text-overline"> Информация об отправителе и получателе</div>
+          <div class="text-center text-overline my-2"> Информация об отправителе и получателе</div>
         </v-col>
         <v-col :cols="6">
           <v-card class="mx-2 text-center" elevation="0">
@@ -138,7 +94,7 @@
       <v-divider />
       <v-row>
         <v-col :cols="12">
-          <div class="text-center text-overline"> Информация об выдаче и погашении сертификата</div>
+          <div class="text-center text-overline my-2"> Информация об выдаче и погашении сертификата</div>
         </v-col>
         <v-col :cols="6">
           <v-card class="mx-4" elevation="0">
@@ -184,62 +140,100 @@
           </v-card>
         </v-col>
       </v-row>
-      <v-divider />
-      <v-row class="my-2 text-center">
-        <v-col class="text-center" cols="12">
-          <v-btn color="error mr-2"> Отказать </v-btn>
-          <v-btn color="success"> Принять </v-btn>
-        </v-col>
-      </v-row>
     </v-navigation-drawer>
   </v-container>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import StatsCard from '@/components/UI/stats/certificates/StatsCard.vue';
 import { DataService } from '@/service/DataService';
 import IHeader from '@/interfaces/IHeader';
 
-@Component
-export default class ActualProblems extends Vue {
-  search = '';
+@Component({
+  components: {
+    StatsCard
+  }
+})
+export default class TransportTransaction extends Vue {
+  headers: IHeader[] = [
+    {
+      text: 'Пользователь, оформивший ВСД',
+      value: 'doctor'
+    },
+    {
+      text: 'продукт',
+      value: 'product'
+    },
+    {
+      text: 'Тип сертификата',
+      value: 'cert_type'
+    },
+    {
+      text: 'Статус сертификата',
+      value: 'cert_status'
+    },
+    {
+      text: 'Источник сертификата',
+      value: 'cert_source'
+    },
+    {
+      text: 'Страна происхождения',
+      value: 'origin_country'
+    },
+    {
+      text: 'Страна назначения',
+      value: 'recipient_country'
+    },
+    {
+      text: 'Дата оформления ВСД',
+      value: 'cert_date'
+    },
+    {
+      text: 'Дата добавления записи в базу Меркурия',
+      value: 'cert_insert_date'
+    }
+  ];
+  certificates = [];
+  stats = {};
   drawer = false;
   drawerData = {};
-  loading = true;
-  headers: IHeader[] = [
-    { text: 'Идентификатор', value: 'certificate_id' },
-    { text: 'Скоринговый балл', value: 'score' },
-    { text: 'Причина нарушения', value: 'score_violation_type' },
-    { text: 'Дата обнаружения', value: 'score_date' }
-  ];
-  problems: any = [];
-
   dataService = new DataService();
+  loading = true;
 
   async mounted(): Promise<void> {
     this.loading = true;
-    await this.dataService.get('scoring').then((response) => {
-      this.problems = response;
-      this.problems.forEach((problem: any) => (problem.score = problem.score.toFixed(2)));
-      this.problems = this.problems.filter((problem: any) => problem.score > 0.5);
+    await this.dataService.get('certificates', { limit: 2000 }).then((response) => {
+      this.certificates = response;
+    });
+
+    await this.dataService.get('certificates/stats').then((response) => {
+      this.stats = response;
     });
     this.loading = false;
   }
 
-  public showDrawer(item: any): void {
-    this.loading = true;
-    this.drawerData = {};
-    this.drawer = true;
-    this.dataService.get(`certificates/${item.certificate_id}`).then((response) => {
-      this.drawerData = response;
-    });
-    this.loading = false;
+  public showDrawer(data: any): void {
+    if (this.drawer) {
+      this.drawerData = {};
+    } else {
+      this.drawerData = data;
+    }
+    this.drawer = !this.drawer;
   }
+
+  // async expandCertificate(payload: any): Promise<any> {
+  //   if (payload.value) {
+  //     await this.dataService.get('certificates', { id: payload.item.id }).then((response) => {
+  //       this.expanded = response;
+  //     });
+  //   }
+  // }
 }
 </script>
 
 <style lang="scss" scoped>
-.actual_problem {
+.transport_transactions {
   cursor: pointer;
 }
 </style>

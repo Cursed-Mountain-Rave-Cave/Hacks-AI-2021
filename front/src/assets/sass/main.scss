@@ -11,15 +11,20 @@ body {
 
 .actual_problems {
   background: rgb(255, 204, 128);
-  background: linear-gradient(140deg, rgba(247, 248, 250, 1) 75%, rgba(255, 204, 128, 1) 100%);
+  background: linear-gradient(140deg, rgba(247, 248, 250, 1) 60%, rgba(255, 204, 128, 1) 100%);
 }
 
-.production_types {
+.production_transaction {
   background: rgb(165, 214, 167);
-  background: linear-gradient(140deg, rgba(247, 248, 250, 1) 75%, rgba(165, 214, 167, 1) 100%);
+  background: linear-gradient(140deg, rgba(247, 248, 250, 1) 60%, rgba(165, 214, 167, 1) 100%);
 }
 
-.certificates {
+.transport_transaction {
   background: rgb(179, 157, 219);
-  background: linear-gradient(140deg, rgba(247, 248, 250, 1) 75%, rgba(179, 157, 219, 1) 100%);
+  background: linear-gradient(140deg, rgba(247, 248, 250, 1) 60%, rgba(179, 157, 219, 1) 100%);
+}
+
+.inventory {
+  background: rgb(179, 157, 219);
+  background: linear-gradient(140deg, rgba(247, 248, 250, 1) 60%, rgba(179, 157, 219, 1) 100%);
 }

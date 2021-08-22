@@ -1,6 +1,6 @@
 from typing import Optional
 from pydantic import BaseModel
-from datetime import datetime
+from datetime import date, datetime
 
 
 class Certificate(BaseModel):
@@ -22,6 +22,7 @@ class Certificate(BaseModel):
 
     sub_product: Optional[str]  # Вид продукции Integer sub_product
     product: Optional[str]  # Продукция Integer product
+    doctor_id: Optional[int]  # doctor id
     doctor: Optional[str]  # Пользователь, оформивший ВСД Integer users
     unit: Optional[str]  # Единица изменения, указанная в ВСД Integer unit
     cert_date: Optional[datetime]  # Дата оформления ВСД Timestamp
@@ -44,6 +45,7 @@ class Certificate(BaseModel):
     consignor_ent_sub_region: Optional[str]  # Площадка.Отправитель.Район String(36) SubRegion
     consignee_ent_sub_region: Optional[str]  # Площадка.Получатель.Район String(36) SubRegion
 
+    repaid_doctor_id: Optional[int]  # Пользователь, погасивший ВСД Integer users
     repaid_doctor: Optional[str]  # Пользователь, погасивший ВСД Integer users
     repaid_cert_date: Optional[datetime]  # Дата погашения ВСД Timestamp
     canceled_doctor: Optional[str]  # Пользователь, погасивший ВСД Integer users
@@ -70,3 +72,22 @@ class Certificate(BaseModel):
 class Stats(BaseModel):
     doctors_count: int
     certificates_count: int
+    mistakes_count: int
+    mistakes_ratio: float
+
+
+class GivenCertificate(BaseModel):
+    date: date
+    count: int
+
+
+class ProductionMistakesRatio(BaseModel):
+    product_type: str
+    mistakes_ratio: float
+
+
+class DoctorInfo(BaseModel):
+    name: str
+    mistakes_ratio: float
+    given_certificates: list[GivenCertificate]
+    product_mistakes_ratio: list[ProductionMistakesRatio]

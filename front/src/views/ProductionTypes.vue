@@ -1,24 +1,7 @@
 <template>
   <v-container fluid>
-    <h2>Типы продукции</h2>
-    <v-card class="pa-2" rounded="lg">
-      <v-simple-table>
-        <template v-slot:default>
-          <thead>
-            <tr>
-              <th class="text-left"> Name </th>
-              <th class="text-left"> Calories </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in desserts" :key="item.name">
-              <td>{{ item.name }}</td>
-              <td>{{ item.calories }}</td>
-            </tr>
-          </tbody>
-        </template>
-      </v-simple-table>
-    </v-card>
+    <h2></h2>
+    <v-card class="pa-2" rounded="lg"> </v-card>
   </v-container>
 </template>
 
