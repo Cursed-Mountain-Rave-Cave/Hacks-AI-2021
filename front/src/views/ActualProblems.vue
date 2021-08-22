@@ -212,7 +212,7 @@ export default class ActualProblems extends Vue {
     { text: 'Причина нарушения', value: 'score_violation_type' },
     { text: 'Дата обнаружения', value: 'score_date' }
   ];
-  problems = [];
+  problems: any = [];
 
   dataService = new DataService();
 
@@ -220,6 +220,8 @@ export default class ActualProblems extends Vue {
     this.loading = true;
     await this.dataService.get('scoring').then((response) => {
       this.problems = response;
+      this.problems.forEach((problem: any) => (problem.score = problem.score.toFixed(2)));
+      this.problems = this.problems.filter((problem: any) => problem.score > 0.5);
     });
     this.loading = false;
   }
